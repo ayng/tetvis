@@ -30,9 +30,15 @@ function setClass(e) {
 
 var pfLegend = {
     " ": "tv-empty",
+    "-": "tv-block-ghost",
     "G": "tv-block-gray",
     "O": "tv-block-yellow",
-    "-": "tv-block-ghost",
+    "J": "tv-block-blue",
+    "L": "tv-block-orange",
+    "i": "tv-block-cyan",
+    "T": "tv-block-purple",
+    "S": "tv-block-green",
+    "Z": "tv-block-red",
 };
 
 function parsePlayfield(src) {
@@ -56,18 +62,21 @@ function parsePlayfield(src) {
 
 function extractPlayfield(src) {
     if (typeof src !== "string") {
-        return "given non-string source";
+        console.error("given non-string source");
+        return "";
     }
 
     var i = src.indexOf("<playfield>");
     if (i === -1) {
-        return "open tag '<playfield>' not found";
+        console.error("open tag '<playfield>' not found");
+        return "";
     }
     i += "<playfield>".length;
 
     var j = src.indexOf("</playfield>", i);
     if (j === -1) {
-        return "closing tag '</playfield>' not found";
+        console.error("closing tag '</playfield>' not found");
+        return "";
     }
 
     var body = src.substring(i, j);
@@ -93,11 +102,14 @@ window.onload = function() {
     inputElement.oninput = function(e) {
         updateWorkspace(e.target.value);
     };
-    inputElement.placeholder = "paste playfield data here";
+    inputElement.placeholder = "paste playfield data here\n\ne.g.\n<playfield>\n...\n</playfield>";
     document.body.appendChild(inputElement);
+
+    document.body.appendChild(document.createElement("br"));
 
     var workspaceElement = document.createElement("div");
     workspaceElement.id = "workspace";
+    workspaceElement.innerHTML = "(output appears here)";
     document.body.appendChild(workspaceElement);
 
 }

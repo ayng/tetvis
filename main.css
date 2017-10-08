@@ -3,8 +3,7 @@ body {
 }
 .board {
     border-spacing: 1;
-    border: 1px gray solid;
-    padding: 4px 6px;
+    margin: 4px 6px;
 }
 
 .board td {
@@ -14,21 +13,41 @@ body {
 }
 
 #workspace {
+    border: 1px gray solid;
+    margin: 4px;
+    display: inline-block;
+    color: gray;
 }
 
 .src-input {
     font-family: monospace;
-    font-size: 1.4em;
+    font-size: 1em;
     width: 360px;
     height: 240px;
 }
 
+/* O Tetromino */
 .tv-block-yellow {
-    background-color: #ffd900; /* yellow */
+    background-color: #ffd900;
 }
-
+/* J Tetromino */
 .tv-block-blue {
-    background-color: darkblue;
+    background-color: #195af0;
+}
+.tv-block-cyan {
+    background-color: #19ccf0;
+}
+.tv-block-purple {
+    background-color: #882ed1;
+}
+.tv-block-green {
+    background-color: #5cc653;
+}
+.tv-block-orange {
+    background-color: #d2642d;
+}
+.tv-block-red {
+    background-color: #e74040;
 }
 
 .tv-block-ghost {
