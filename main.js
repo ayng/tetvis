@@ -10,7 +10,7 @@ function createRow(w) {
     var rowElement = document.createElement("tr");
     for (var i = 0; i < w; i++) {
         var cellElement = document.createElement("td");
-        cellElement.onclick = setClass;
+        //cellElement.onclick = setClass;
         rowElement.appendChild(cellElement);
     }
     return rowElement;
@@ -18,8 +18,10 @@ function createRow(w) {
 
 function createCell(className) {
     var cellElement = document.createElement("td");
-    cellElement.className = className;
-    cellElement.onclick = setClass;
+    var innerElement = document.createElement("div");
+    innerElement.className = "tv-base" + " " + className;
+    //innerElement.onclick = setClass;
+    cellElement.appendChild(innerElement);
     return cellElement;
 }
 
