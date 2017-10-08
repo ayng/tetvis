@@ -1,14 +1,7 @@
 body {
     font-family: monospace;
 }
-.board {
-    border-spacing: 0;
-    margin: 4px 6px;
-}
 
-.board td {
-    padding: 0;
-}
 
 #workspace {
     border: 1px gray solid;
@@ -17,54 +10,19 @@ body {
     margin: 4px;
 }
 
-.src-input {
+#input {
     font-family: monospace;
     font-size: 1em;
     width: 360px;
     height: 240px;
+    display: inline-block;
+    vertical-align: top;
 }
 
-.tv-base {
-    width: 24px;
-    height: 24px;
-    margin: 1px;
-    /* Make border appear on the inside of the element. */
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+#output {
+    width: 360px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px gray solid;
 }
 
-/* O Tetromino */
-.tv-block-yellow {
-    background-color: #ffd900;
-}
-/* J Tetromino */
-.tv-block-blue {
-    background-color: #195af0;
-}
-.tv-block-cyan {
-    background-color: #0cf;
-}
-.tv-block-purple {
-    background-color: #882ed1;
-}
-.tv-block-green {
-    background-color: #5bd742;
-}
-.tv-block-orange {
-    background-color: #ff8000;
-}
-.tv-block-red {
-    background-color: #e74040;
-}
-
-.tv-block-ghost {
-    border: 1px gray dashed;
-}
-
-.tv-block-gray {
-    background-color: gray;
-}
-
-.tv-empty {
-}

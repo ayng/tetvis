@@ -1,0 +1,59 @@
+.tv-playfield {
+    display: inline-block;
+    margin: 2px 3px;
+    border-spacing: 1;
+}
+
+.tv-playfield td {
+    padding: 0;
+}
+
+.tv-playfield > tr > td > div {
+    /* size */
+    width: 24px;
+    height: 24px;
+    /* border-box (makes width/height include border width)  */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* O Tetromino */
+.tv-block-yellow {
+    background-color: #ffd900;
+}
+/* J Tetromino */
+.tv-block-blue {
+    background-color: #195af0;
+}
+/* L Tetromino */
+.tv-block-orange {
+    background-color: #ff8000;
+}
+/* I Tetromino */
+.tv-block-cyan {
+    background-color: #0cf;
+}
+/* T Tetromino */
+.tv-block-purple {
+    background-color: #882ed1;
+}
+/* S Tetromino */
+.tv-block-green {
+    background-color: #5bd742;
+}
+/* Z Tetromino */
+.tv-block-red {
+    background-color: #e74040;
+}
+/* Ghost block */
+.tv-block-ghost {
+    border: 1px gray dashed;
+}
+/* Garbage block */
+.tv-block-gray {
+    background-color: gray;
+}
+/* Empty space */
+.tv-empty {
+}

@@ -19,7 +19,7 @@ function createRow(w) {
 function createCell(className) {
     var cellElement = document.createElement("td");
     var innerElement = document.createElement("div");
-    innerElement.className = "tv-base" + " " + className;
+    innerElement.className = className;
     //innerElement.onclick = setClass;
     cellElement.appendChild(innerElement);
     return cellElement;
@@ -82,6 +82,8 @@ function extractPlayfield(src) {
     }
 
     var body = src.substring(i, j);
+    // strip leading and trailing newlines
+    body = body.replace(/^\n+|\n+$/g, '');
     return body
 }
 
@@ -90,28 +92,48 @@ function updateWorkspace(pfSrc) {
 
     var pfBody = extractPlayfield(pfSrc);
     var tableElement = parsePlayfield(pfBody);
-    tableElement.className = "board";
+    tableElement.className = "tv-playfield";
 
     // clear workspace
     workspaceElement.innerHTML = "";
 
     workspaceElement.appendChild(tableElement);
+
+    // update output literal HTML
+    var outputElement = document.getElementById("output");
+    outputElement.innerHTML = escapeHTML(workspaceElement.innerHTML);
 }
 
 window.onload = function() {
     var inputElement = document.createElement("textarea");
-    inputElement.className = "src-input";
+    inputElement.id = "input";
     inputElement.oninput = function(e) {
         updateWorkspace(e.target.value);
     };
     inputElement.placeholder = "paste playfield data here\n\ne.g.\n<playfield>\n...\n</playfield>";
     document.body.appendChild(inputElement);
 
-    document.body.appendChild(document.createElement("br"));
-
     var workspaceElement = document.createElement("div");
     workspaceElement.id = "workspace";
     workspaceElement.innerHTML = "(output appears here)";
     document.body.appendChild(workspaceElement);
 
+    document.body.appendChild(document.createElement("br"));
+
+    var outputTitleElement = document.createElement("span");
+    outputTitleElement.style = "font-size: 1.2em;";
+    outputTitleElement.innerHTML = 'generated html source (requires <a href="tetvis.css">tetvis stylesheet</a> to display correctly):';
+    document.body.appendChild(outputTitleElement);
+    var outputElement = document.createElement("div");
+    outputElement.id = "output";
+    document.body.appendChild(outputElement);
+}
+
+function escapeHTML(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
 }
