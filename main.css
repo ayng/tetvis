@@ -1,3 +1,6 @@
+body {
+    font-family: monospace;
+}
 .board {
     border-spacing: 1;
     border: 1px gray solid;
@@ -11,13 +14,13 @@
 }
 
 #workspace {
-    float: right;
 }
 
 .src-input {
-    width: 40%;
-    height: 40em;
-    float: left;
+    font-family: monospace;
+    font-size: 1.4em;
+    width: 360px;
+    height: 240px;
 }
 
 .tv-block-yellow {

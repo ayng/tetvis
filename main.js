@@ -93,10 +93,11 @@ window.onload = function() {
     inputElement.oninput = function(e) {
         updateWorkspace(e.target.value);
     };
+    inputElement.placeholder = "paste playfield data here";
     document.body.appendChild(inputElement);
 
     var workspaceElement = document.createElement("div");
-    workspaceElement.className = "workspace";
+    workspaceElement.id = "workspace";
     document.body.appendChild(workspaceElement);
 
 }
