@@ -37,7 +37,7 @@ var pfLegend = {
     "O": "tv-block-yellow",
     "J": "tv-block-blue",
     "L": "tv-block-orange",
-    "i": "tv-block-cyan",
+    "I": "tv-block-cyan",
     "T": "tv-block-purple",
     "S": "tv-block-green",
     "Z": "tv-block-red",
@@ -50,7 +50,7 @@ function parsePlayfield(src) {
         var row = rows[y];
         var rowElement = document.createElement("tr");
         for (var x = 0; x < row.length; x++) {
-            var chr = row[x];
+            var chr = row[x].toUpperCase();
             if (chr in pfLegend) {
                 rowElement.appendChild(createCell(pfLegend[chr]));
             } else {
@@ -104,7 +104,23 @@ function updateWorkspace(pfSrc) {
     outputElement.innerHTML = escapeHTML(workspaceElement.innerHTML);
 }
 
+var examplePfSrc = 
+`<playfield>
+  JJJ     
+    J     
+          
+          
+          
+J ---   i 
+JJJZ-SLLi 
+OOZZTSSLi 
+OOZTTTSLi 
+GGG GGGGGG
+GGG GGGGGG
+</playfield>`;
+
 window.onload = function() {
+    // input box
     var inputElement = document.createElement("textarea");
     inputElement.id = "input";
     inputElement.oninput = function(e) {
@@ -113,11 +129,14 @@ window.onload = function() {
     inputElement.placeholder = "paste playfield data here\n\ne.g.\n<playfield>\n...\n</playfield>";
     document.body.appendChild(inputElement);
 
+    // workspace aka html preview area
     var workspaceElement = document.createElement("div");
     workspaceElement.id = "workspace";
     workspaceElement.innerHTML = "(output appears here)";
     document.body.appendChild(workspaceElement);
 
+    // html output box
+    document.body.appendChild(document.createElement("br"));
     document.body.appendChild(document.createElement("br"));
 
     var outputTitleElement = document.createElement("span");
@@ -127,6 +146,15 @@ window.onload = function() {
     var outputElement = document.createElement("div");
     outputElement.id = "output";
     document.body.appendChild(outputElement);
+
+    // manually update workspace
+    inputElement.value = examplePfSrc;
+    updateWorkspace(inputElement.value);
+
+    // footer
+    var footerElement = document.createElement("p");
+    footerElement.innerHTML = '<a href="https://github.com/ayng/tetvis">view the source on github</a>';
+    document.body.appendChild(footerElement);
 }
 
 function escapeHTML(unsafe) {
