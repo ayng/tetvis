@@ -7,7 +7,7 @@ body {
     border: 1px gray solid;
     display: inline-block;
     color: gray;
-    margin: 4px;
+    margin: 0 4px;
 }
 
 #input {
