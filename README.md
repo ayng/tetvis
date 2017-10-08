@@ -1,5 +1,7 @@
 # tetvis
 
+[demo](ayng.github.io/tetvis)
+
 tetvis is a HTML/CSS framework for visualizing tetris in your browser.
 
 The goal is to create an easy-to-use system for communicating tetris strategies online.
