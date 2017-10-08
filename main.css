@@ -1,0 +1,42 @@
+.board {
+    border-spacing: 1;
+    border: 1px gray solid;
+    padding: 4px 6px;
+}
+
+.board td {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+}
+
+#workspace {
+    float: right;
+}
+
+.src-input {
+    width: 40%;
+    height: 40em;
+    float: left;
+}
+
+.tv-block-yellow {
+    background-color: #ffd900; /* yellow */
+}
+
+.tv-block-blue {
+    background-color: darkblue;
+}
+
+.tv-block-ghost {
+    border: 1px gray dashed;
+    background-color: #eee;
+}
+
+.tv-block-gray {
+    background-color: gray;
+}
+
+.tv-empty {
+    background-color: #eee;
+}
