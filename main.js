@@ -19,7 +19,7 @@ function createRow(w) {
 function createCell(className) {
     var cellElement = document.createElement("td");
     var innerElement = document.createElement("div");
-    innerElement.className = className;
+    innerElement.className = "tv-block" + " " + className;
     //innerElement.onclick = setClass;
     cellElement.appendChild(innerElement);
     return cellElement;
@@ -32,15 +32,15 @@ function setClass(e) {
 
 var pfLegend = {
     " ": "tv-empty",
-    "-": "tv-block-ghost",
-    "G": "tv-block-gray",
-    "O": "tv-block-yellow",
-    "J": "tv-block-blue",
-    "L": "tv-block-orange",
-    "I": "tv-block-cyan",
-    "T": "tv-block-purple",
-    "S": "tv-block-green",
-    "Z": "tv-block-red",
+    "-": "tv-ghost",
+    "G": "tv-gray",
+    "O": "tv-yellow",
+    "J": "tv-blue",
+    "L": "tv-orange",
+    "I": "tv-cyan",
+    "T": "tv-purple",
+    "S": "tv-green",
+    "Z": "tv-red",
 };
 
 function parsePlayfield(src) {
@@ -102,6 +102,10 @@ function updateWorkspace(pfSrc) {
     // update output literal HTML
     var outputElement = document.getElementById("output");
     outputElement.innerHTML = escapeHTML(workspaceElement.innerHTML);
+
+    // update 
+    var cssomElement = document.getElementById("cssom");
+    cssomElement.innerHTML = toCSSStyleSheet(cssom);
 }
 
 var examplePfSrc = 
@@ -147,14 +151,20 @@ window.onload = function() {
     outputElement.id = "output";
     document.body.appendChild(outputElement);
 
-    // manually update workspace
-    inputElement.value = examplePfSrc;
-    updateWorkspace(inputElement.value);
+    // css output
+    console.log(toCSSStyleSheet(cssom));
+    var cssomElement = document.createElement("style");
+    cssomElement.id = "cssom";
+    document.body.appendChild(cssomElement);
 
     // footer
     var footerElement = document.createElement("p");
     footerElement.innerHTML = '<a href="https://github.com/ayng/tetvis">view the source on github</a>';
     document.body.appendChild(footerElement);
+
+    // manually update workspace
+    inputElement.value = examplePfSrc;
+    updateWorkspace(inputElement.value);
 }
 
 function escapeHTML(unsafe) {
@@ -165,3 +175,74 @@ function escapeHTML(unsafe) {
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
 }
+
+function toCSSStyleSheet(cssom) {
+    var ruleSets = [];
+    for (var selector in cssom) {
+        ruleSets.push(toCSSRuleSet(selector, cssom[selector]));
+    }
+    return ruleSets.join("\n\n")
+}
+
+function toCSSRuleSet(selector, rules) {
+    var ruleList = [];
+    for (var property in rules) {
+        ruleList.push(toCSSRule(property, rules[property]));
+    }
+    return selector + " {\n" + ruleList.map(indent).join("\n") + "\n}";
+}
+
+function toCSSRule(property, value) {
+    return property + ": " + value + ";";
+}
+
+function indent(s) {
+    return "    " + s;
+}
+
+var cssom = {
+    ".tv-playfield": {
+        "display": "inline-block",
+        "margin": "2px 3px",
+        "border-spacing": "1",
+    },
+    ".tv-playfield td": {
+        "padding": "0",
+    },
+    ".tv-block": {
+        "width": "24px",
+        "height": "24px",
+        "box-sizing": "border-box",
+        "-moz-box-sizing": "border-box",
+        "-webkit-box-sizing": "border-box",
+    },
+    ".tv-yellow": {
+        "background-color": "#ffd900",
+    },
+    ".tv-blue": {
+        "background-color": "#195af0",
+    },
+    ".tv-orange": {
+        "background-color": "#ff8000",
+    },
+    ".tv-cyan": {
+        "background-color": "#0cf",
+    },
+    ".tv-purple": {
+        "background-color": "#882ed1",
+    },
+    ".tv-green": {
+        "background-color": "#5bd742",
+    },
+    ".tv-red": {
+        "background-color": "#e74040",
+    },
+    ".tv-ghost": {
+        "border": "1px gray dashed",
+    },
+    ".tv-gray": {
+        "background-color": "gray",
+    },
+    ".tv-empty": {
+    },
+};

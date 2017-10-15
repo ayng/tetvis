@@ -8,7 +8,7 @@
     padding: 0;
 }
 
-.tv-playfield > tr > td > div {
+.tv-block {
     /* size */
     width: 24px;
     height: 24px;
@@ -19,39 +19,39 @@
 }
 
 /* O Tetromino */
-.tv-block-yellow {
+.tv-yellow {
     background-color: #ffd900;
 }
 /* J Tetromino */
-.tv-block-blue {
+.tv-blue {
     background-color: #195af0;
 }
 /* L Tetromino */
-.tv-block-orange {
+.tv-orange {
     background-color: #ff8000;
 }
 /* I Tetromino */
-.tv-block-cyan {
+.tv-cyan {
     background-color: #0cf;
 }
 /* T Tetromino */
-.tv-block-purple {
+.tv-purple {
     background-color: #882ed1;
 }
 /* S Tetromino */
-.tv-block-green {
+.tv-green {
     background-color: #5bd742;
 }
 /* Z Tetromino */
-.tv-block-red {
+.tv-red {
     background-color: #e74040;
 }
 /* Ghost block */
-.tv-block-ghost {
+.tv-ghost {
     border: 1px gray dashed;
 }
 /* Garbage block */
-.tv-block-gray {
+.tv-gray {
     background-color: gray;
 }
 /* Empty space */
